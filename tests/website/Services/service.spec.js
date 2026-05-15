@@ -6,7 +6,7 @@ test.describe("Services page", () => {
   test.describe.configure({ timeout: 1000000 })
   test.beforeEach(async ({ page }) => {
     await page.goto(BASE_URL);
-    // This  is new
+    
 });
 
 
