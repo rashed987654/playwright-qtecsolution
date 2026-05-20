@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-//import { openServicesPage,reloadServicesPage } from "../../helpers/openServicesPage";
+import { ServiceMenuHoverAndSubmenuVisibility, VerifyAndNavigateToServicesPage} from "../../helpers/ServicesHelper";
 const BASE_URL = "https://staging.qtecsolution.com";
 
 test.describe("Services page", () => {
@@ -11,19 +11,9 @@ test.describe("Services page", () => {
 
 
 // 1️⃣ Header: 
-test("Header 👉 1a. Verify Services Menu & Submenu (Visibility, Hover, Click & URL)", async ({ page }) => {
-  // Header Services Menu
-    const servicesMenu = page.getByRole("link", { name: "Services", exact: true  });
-
-    //Services Menu visibility 
-    await test.step("Services Menu → Verify visibility ", async () => {
-      await expect(servicesMenu).toBeVisible();
-    });
-
-    //Services Menu Hover 
-    await test.step("Services Menu → Verify Hover ", async () => {
-      await servicesMenu.hover();
-    });
+test.only("Header 👉 1a. Verify Services Menu & Submenu (Visibility, Hover, Click & URL)", async ({ page }) => {
+  //Services Menu Helper Function
+    await ServiceMenuHoverAndSubmenuVisibility(page);
 
     // All submenu items
     const submenus = [
@@ -89,8 +79,10 @@ test("Header 👉 1a. Verify Services Menu & Submenu (Visibility, Hover, Click &
         });
         // ↩️ Goback Services Menu
         await test.step("  Goback to Services Menu & Hover", async () => { 
-          await page.goto(BASE_URL);  
-          await servicesMenu.hover();
+          await page.goto(BASE_URL); 
+
+          // helper function to hover on services menu and verify submenu visibility 
+          await ServiceMenuHoverAndSubmenuVisibility(page);
           
         });
 
@@ -99,35 +91,12 @@ test("Header 👉 1a. Verify Services Menu & Submenu (Visibility, Hover, Click &
 
   });
 
+
 // 2️⃣ Header:  Contact Form 
-test("Header 👉 1b. Verify Contact Form ", async ({ page }) => {
+test.only("Header 👉 1b. Verify Contact Form ", async ({ page }) => {
 
-    const servicesMenu = page.getByRole("link", { name: "Services", exact: true });
-
-     //Services Menu visibility
-      await test.step("Verify Services menu is visible", async () => {
-        await expect(servicesMenu).toBeVisible();
-      });
-
-      //Services Menu Hover
-      await test.step("Hover on Services menu", async () => {
-        await servicesMenu.hover();
-      });
-
-       // Step 3️⃣ Verify Services Menu href
-      await test.step("Services Menu → Verify Href", async () => {
-        await expect(servicesMenu).toHaveAttribute("href","https://staging.qtecsolution.com/services");
-      });
-
-      //Services Menu Click
-      await test.step("Click on Services menu", async () => {
-        await servicesMenu.click();
-      });
-
-      //Services Menu URL
-      await test.step("Verify Services page URL", async () => {
-          await expect(page).toHaveURL(/\/services\/?$/);
-      });
+  //Services Menu Helper Function
+    await VerifyAndNavigateToServicesPage(page);
 
     await test.step("Navigate to Contact Us page", async () => {
       const ContactForm = page.getByRole('banner').getByRole('link', { name: 'Contact Us', exact: true }).first();
@@ -200,34 +169,10 @@ test("Header 👉 1b. Verify Contact Form ", async ({ page }) => {
 // 3️⃣ Body: CardsSection
 test("Body 👉 2a. Verify CardsSection Title (Visibility, Hover, Href, Click & URL)", async ({ page }) => {
 
-  const servicesMenu = page.getByRole('link', { name: 'Services', exact: true  });  //exact: true 
-
-  //Services Menu visibility 
-    await test.step("Services Menu → Verify visibility", async () => {
-      await expect(servicesMenu).toBeVisible();
-    });
-
-  //Services Menu Hover 
-    await test.step("Services Menu → Verify Hover", async () => {
-      await servicesMenu.hover();
-    });
-
-  //Services Menu href 
-      await test.step("Services Menu → Verify href", async () => {
-      await expect(servicesMenu).toHaveAttribute('href', "https://staging.qtecsolution.com/services");
-    });
-
-  //Services Menu Click 
-    await test.step("Services Menu → Verify Click ", async () => {
-      await servicesMenu.click();
-    });
-
-  //Services Menu URL 
-    await test.step("Services Menu → Verify URL", async () => {
-        await expect(page).toHaveURL(/\/services\/?$/);
-    });
-
-
+  //Services Menu Helper Function for 
+    await VerifyAndNavigateToServicesPage(page);
+  
+  
   const serviceCards = [
     { name: 'Web Development', url: '/services/web-development' },
     { name: 'Mobile App', url: '/services/mobile-app' },  
@@ -284,8 +229,9 @@ test("Body 👉 2a. Verify CardsSection Title (Visibility, Hover, Href, Click & 
         // ↩️ Goback Services Menu
         await test.step("  Goback to Services Menu & Hover", async () => { 
           await page.goto(BASE_URL);  
-          await servicesMenu.hover();
-          await servicesMenu.click();
+
+         //Services Menu Helper Function
+          await VerifyAndNavigateToServicesPage(page);
         });
         
   
@@ -295,36 +241,12 @@ test("Body 👉 2a. Verify CardsSection Title (Visibility, Hover, Href, Click & 
   });
 
 
+
 // 4️⃣ Body: Marquee Effect
 test("Body 👉 2b.Verify Marquee Effect (Visibility, Hover, Href, Click & URL)", async ({ page }) => {
 
-    // Services menu
-    const servicesMenu = page.getByRole("link", {name: "Services",exact: true});
-
-    // Services Menu visibility
-    await test.step("Services Menu → Verify Visibility", async () => {
-      await expect(servicesMenu).toBeVisible();
-    });
-
-    // Services Menu Hover 
-    await test.step("Services Menu → Verify Hover", async () => {
-      await servicesMenu.hover();
-    });
-
-    // Services Menu href
-    await test.step("Services Menu → Verify Href", async () => {
-      await expect(servicesMenu).toHaveAttribute("href","https://staging.qtecsolution.com/services");
-    });
-
-    // Services Menu Click 
-    await test.step("Services Menu → Verify Click", async () => {
-      await servicesMenu.click();
-    });
-
-    //Services Menu URL 
-    await test.step("Services Menu → Verify URL", async () => {
-        await expect(page).toHaveURL(/\/services\/?$/);
-    });
+    //Services Menu Helper Function for 
+    await VerifyAndNavigateToServicesPage(page);
 
  // 🛑 Disable marquee animation globally
     await test.step(" 🛑 Marquee → Disable Animation", async () => {
@@ -410,8 +332,9 @@ test("Body 👉 2b.Verify Marquee Effect (Visibility, Hover, Href, Click & URL)"
       // 🔁 Go back  Services Menu
       await test.step("🔁 Go back  Services Menu", async () => {
         await page.goto(BASE_URL);
-        await servicesMenu.hover();
-        await servicesMenu.click();
+
+        //Services Menu Helper Function for 
+        await VerifyAndNavigateToServicesPage(page);
       });
 
 
@@ -435,34 +358,8 @@ test("Body 👉 2b.Verify Marquee Effect (Visibility, Hover, Href, Click & URL)"
   
 // 5️⃣ Body:  Message send Form 
 test("Body 👉 2c. Verify Message Send  Form", async ({ page }) => {
-
-  const servicesMenu = page.getByRole("link", { name: "Services", exact: true });
-
-     //Services Menu visibility
-      await test.step("Verify Services menu is visible", async () => {
-        await expect(servicesMenu).toBeVisible();
-      });
-
-      //Services Menu Hover
-      await test.step("Hover on Services menu", async () => {
-        await servicesMenu.hover();
-      });
-
-       //  Verify Services Menu href
-      await test.step("Services Menu → Verify Href", async () => {
-        await expect(servicesMenu).toHaveAttribute("href","https://staging.qtecsolution.com/services");
-      });
-
-      //Services Menu Click
-      await test.step("Click on Services menu", async () => {
-        await servicesMenu.click();
-      });
-
-      //Services Menu URL
-      await test.step("Verify Services page URL", async () => {
-          await expect(page).toHaveURL(/\/services\/?$/);
-      });
-
+    //Services Menu Helper Function for 
+    await VerifyAndNavigateToServicesPage(page);
 
     await test.step("Send Message empty data & validate Full Name", async () => {
       await page.getByRole('button', { name: 'Send Message →' }).click();
@@ -528,33 +425,8 @@ test("Body 👉 2c. Verify Message Send  Form", async ({ page }) => {
 // 6️⃣ Footer:   Menu Non-clickable
 test("Footer 👉 3a. Verify Non-Clickable Menu", async ({ page }) => {
 
-    const servicesMenu = page.getByRole("link", { name: "Services", exact: true });
-
-     //Services Menu visibility
-      await test.step("Verify Services menu is visible", async () => {
-        await expect(servicesMenu).toBeVisible();
-      });
-
-      //Services Menu Hover
-      await test.step("Hover on Services menu", async () => {
-        await servicesMenu.hover();
-      });
-
-       //  Verify Services Menu href
-      await test.step("Services Menu → Verify Href", async () => {
-        await expect(servicesMenu).toHaveAttribute("href","https://staging.qtecsolution.com/services");
-      });
-
-      //Services Menu Click
-      await test.step("Click on Services menu", async () => {
-        await servicesMenu.click();
-      });
-
-      //Services Menu URL
-      await test.step("Verify Services page URL", async () => {
-          await expect(page).toHaveURL(/\/services\/?$/);
-      });
-
+    //Services Menu Helper Function for 
+      await VerifyAndNavigateToServicesPage(page);
   
  // ================= FOOTER =================
 const footer = page.locator("footer");
@@ -585,9 +457,10 @@ const labels = [
   
       // ↩️ Goback Services Menu
       await test.step("Goback to Services Menu & Click", async () => {
-        await page.goto(BASE_URL);  
-        await servicesMenu.hover();
-        await servicesMenu.click();
+        await page.goto(BASE_URL);
+
+      //Services Menu Helper Function for 
+        await VerifyAndNavigateToServicesPage(page);
       });
 
 
@@ -596,34 +469,10 @@ const labels = [
   });
 
 // 7️⃣ Footer:  Clickable Menu 
-test("Footer 👉 3b.Verify All Footer Menu (Visibility, Hover, Href, Click & URL) ", async ({ page }) => {
+test.only("Footer 👉 3b.Verify All Footer Menu (Visibility, Hover, Href, Click & URL) ", async ({ page }) => {
     
-    const servicesMenu = page.getByRole("link", { name: "Services", exact: true });
-
-     //Services Menu visibility
-      await test.step("Verify Services menu is visible", async () => {
-        await expect(servicesMenu).toBeVisible();
-      });
-
-      //Services Menu Hover
-      await test.step("Hover on Services menu", async () => {
-        await servicesMenu.hover();
-      });
-
-       // Verify Services Menu href
-      await test.step("Services Menu → Verify Href", async () => {
-        await expect(servicesMenu).toHaveAttribute("href","https://staging.qtecsolution.com/services");
-      });
-
-      //Services Menu Click
-      await test.step("Click on Services menu", async () => {
-        await servicesMenu.click();
-      });
-
-      //Services Menu URL
-      await test.step("Verify Services page URL", async () => {
-          await expect(page).toHaveURL(/\/services\/?$/);
-      });
+    //Services Menu Helper Function for 
+    await VerifyAndNavigateToServicesPage(page);
 
   
 // ================= LINKS =================
@@ -677,8 +526,8 @@ test("Footer 👉 3b.Verify All Footer Menu (Visibility, Hover, Href, Click & UR
     // ↩️ Goback Services Menu
       await test.step("Goback to Services Menu & Click", async () => {
         await page.goto(BASE_URL);  
-        await servicesMenu.hover();
-        await servicesMenu.click();
+      //Services Menu Helper Function for 
+        await VerifyAndNavigateToServicesPage(page);
       });
 
 
@@ -692,33 +541,9 @@ test("Footer 👉 3b.Verify All Footer Menu (Visibility, Hover, Href, Click & UR
 // 8️⃣ Footer:  Social Icons
 test("Footer  👉 3c.Verify all Social Icons (Visibility, Hover, Href, Click & URL)", async ({ page }) => {
     
-  const servicesMenu = page.getByRole("link", { name: "Services", exact: true });
-
-     //Services Menu visibility
-      await test.step("Verify Services menu is visible", async () => {
-        await expect(servicesMenu).toBeVisible();
-      });
-
-      //Services Menu Hover
-      await test.step("Hover on Services menu", async () => {
-        await servicesMenu.hover();
-      });
-
-       // Verify Services Menu href
-      await test.step("Services Menu → Verify Href", async () => {
-        await expect(servicesMenu).toHaveAttribute("href","https://staging.qtecsolution.com/services");
-      });
-
-      //Services Menu Click
-      await test.step("Click on Services menu", async () => {
-        await servicesMenu.click();
-      });
-
-      //Services Menu URL
-      await test.step("Verify Services page URL", async () => {
-          await expect(page).toHaveURL(/\/services\/?$/);
-      });
-  
+  //Services Menu Helper Function for 
+    await VerifyAndNavigateToServicesPage(page);
+    
     // 🔹 Social icons (external + SVG)
       const socialLinks = [
         { type: "social", name: "Facebook", key: "facebook", url: "https://www.facebook.com/QtecSolution" },
