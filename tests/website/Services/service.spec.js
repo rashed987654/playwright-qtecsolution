@@ -10,7 +10,7 @@ test.describe("Services page", () => {
 
 
 // 1️⃣ Header: 
-test.only("Header 👉 1a. Verify Services Menu & Submenu (Visibility, Hover, Click & URL)", async ({ page }) => {
+test("Header 👉 1a. Verify Services Menu & Submenu (Visibility, Hover, Click & URL)", async ({ page }) => {
   //Services Menu Helper Function
     await ServiceMenuHoverAndSubmenuVisibility(page);
 
@@ -91,7 +91,7 @@ test.only("Header 👉 1a. Verify Services Menu & Submenu (Visibility, Hover, Cl
   });
 
 // 2️⃣ Header:  Contact Form 
-test.only("Header 👉 1b. Verify Contact Form ", async ({ page }) => {
+test("Header 👉 1b. Verify Contact Form ", async ({ page }) => {
 
   //Services Menu Helper Function
     await VerifyAndNavigateToServicesPage(page);
