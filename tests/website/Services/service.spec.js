@@ -5,8 +5,7 @@ const BASE_URL = "https://staging.qtecsolution.com";
 test.describe("Services page", () => {
   test.describe.configure({ timeout: 1000000 })
   test.beforeEach(async ({ page }) => {
-    await page.goto(BASE_URL);
-    
+    await page.goto(BASE_URL); 
 });
 
 
@@ -91,7 +90,6 @@ test.only("Header 👉 1a. Verify Services Menu & Submenu (Visibility, Hover, Cl
 
   });
 
-
 // 2️⃣ Header:  Contact Form 
 test.only("Header 👉 1b. Verify Contact Form ", async ({ page }) => {
 
@@ -165,7 +163,6 @@ test.only("Header 👉 1b. Verify Contact Form ", async ({ page }) => {
 
   });
   
-
 // 3️⃣ Body: CardsSection
 test("Body 👉 2a. Verify CardsSection Title (Visibility, Hover, Href, Click & URL)", async ({ page }) => {
 
@@ -239,8 +236,6 @@ test("Body 👉 2a. Verify CardsSection Title (Visibility, Hover, Href, Click & 
 
 
   });
-
-
 
 // 4️⃣ Body: Marquee Effect
 test("Body 👉 2b.Verify Marquee Effect (Visibility, Hover, Href, Click & URL)", async ({ page }) => {
@@ -355,7 +350,6 @@ test("Body 👉 2b.Verify Marquee Effect (Visibility, Hover, Href, Click & URL)"
 
   });
 
-  
 // 5️⃣ Body:  Message send Form 
 test("Body 👉 2c. Verify Message Send  Form", async ({ page }) => {
     //Services Menu Helper Function for 
@@ -421,7 +415,6 @@ test("Body 👉 2c. Verify Message Send  Form", async ({ page }) => {
 
   });
 
-  
 // 6️⃣ Footer:   Menu Non-clickable
 test("Footer 👉 3a. Verify Non-Clickable Menu", async ({ page }) => {
 
