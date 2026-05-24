@@ -10,7 +10,7 @@ test.describe("Services page", () => {
 
 
 // 1️⃣ Header: 
-test("Header 👉 1a. Verify Services Menu & Submenu (Visibility, Hover, Click & URL)", async ({ page }) => {
+test.only("Header 👉 1a. Verify Services Menu & Submenu (Visibility, Hover, Click & URL)", async ({ page }) => {
   //Services Menu Helper Function
     await ServiceMenuHoverAndSubmenuVisibility(page);
 
