@@ -469,7 +469,7 @@ const labels = [
   });
 
 // 7️⃣ Footer:  Clickable Menu 
-test.only("Footer 👉 3b.Verify All Footer Menu (Visibility, Hover, Href, Click & URL) ", async ({ page }) => {
+test("Footer 👉 3b.Verify All Footer Menu (Visibility, Hover, Href, Click & URL) ", async ({ page }) => {
     
     //Services Menu Helper Function for 
     await VerifyAndNavigateToServicesPage(page);
