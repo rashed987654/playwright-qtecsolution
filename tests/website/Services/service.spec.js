@@ -532,7 +532,7 @@ test("Footer 👉 3b.Verify All Footer Menu (Visibility, Hover, Href, Click & UR
   });
 
 // 8️⃣ Footer:  Social Icons
-test.only("Footer  👉 3c.Verify all Social Icons (Visibility, Hover, Href, Click & URL)", async ({ page }) => {
+test("Footer  👉 3c.Verify all Social Icons (Visibility, Hover, Href, Click & URL)", async ({ page }) => {
     
   //Services Menu Helper Function for 
     await VerifyAndNavigateToServicesPage(page);
@@ -553,23 +553,23 @@ test.only("Footer  👉 3c.Verify all Social Icons (Visibility, Hover, Href, Cli
         const icon = page.locator(`.sociallist a[href*="${item.key}"]`);
   
         // 🔍 Visibility
-        await test.step(`🔎 ${item.name} → visibility`, async () => {
+        await test.step(`🔎 ${item.name} → Verify visibility`, async () => {
           await expect.soft(icon, `${item.name} icon should be visible`).toBeVisible();
         });
-  
+
         // 🖱️ Hover
-        await test.step(`🖱️ ${item.name} → hover`, async () => {
+        await test.step(`🖱️ ${item.name} → Verify hover`, async () => {
           await icon.hover();
         });
   
-        // 🔗 Href validation
-        await test.step(`🔗 ${item.name} → validate href`, async () => {
+        // 🔗 Href 
+        await test.step(`🔗 ${item.name} → Verify href`, async () => {
           await expect.soft(icon, `${item.name} href mismatch`).toHaveAttribute('href', item.url);
         });
   
   
-        // 🚀 Click + validation URL
-        await test.step(`🚀 ${item.name} → click & verify URL`, async () => {
+        // 🚀 Click &  URL
+        await test.step(`🚀 ${item.name} → Verify click & URL`, async () => {
   
           const [newPage] = await Promise.all([
             page.context().waitForEvent('page'),
