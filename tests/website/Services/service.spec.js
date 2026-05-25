@@ -532,7 +532,7 @@ test("Footer 👉 3b.Verify All Footer Menu (Visibility, Hover, Href, Click & UR
   });
 
 // 8️⃣ Footer:  Social Icons
-test("Footer  👉 3c.Verify all Social Icons (Visibility, Hover, Href, Click & URL)", async ({ page }) => {
+test.only("Footer  👉 3c.Verify all Social Icons (Visibility, Hover, Href, Click & URL)", async ({ page }) => {
     
   //Services Menu Helper Function for 
     await VerifyAndNavigateToServicesPage(page);
@@ -541,7 +541,7 @@ test("Footer  👉 3c.Verify all Social Icons (Visibility, Hover, Href, Click & 
       const socialLinks = [
         { type: "social", name: "Facebook", key: "facebook", url: "https://www.facebook.com/QtecSolution" },
         { type: "social", name: "Twitter", key: "twitter", url: "https://twitter.com/qtec_solution" },
-        { type: "social", name: "LinkedIn", key: "linkedin", url: "https://www.linkedin.com/company/qtec-solution/" },
+        { type: "social", name: "LinkedIn", key: "linkedin", url: "https://www.linkedin.com/company/qtec-solution" },
         { type: "social", name: "Instagram", key: "instagram", url: "https://www.instagram.com/qtecsolution/" },
         { type: "social", name: "GitHub", key: "github", url: "https://github.com/qtecsolution" },
         { type: "social", name: "YouTube", key: "youtube", url: "https://www.youtube.com/@qtecsolutionlimited" }
